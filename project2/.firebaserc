@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ost-cas-fee-hpl-2023-project2": {
+      "hosting": {
+        "project2": [
+          "ost-cas-fee-hpl-2023-project2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ost-cas-fee-hpl-2023-project2"
+  }
+}

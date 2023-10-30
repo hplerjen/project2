@@ -1,11 +1,11 @@
 <p>event-add works!</p>
 <div class="container">
     <h1> add Event</h1>
-    <form (ngSubmit)="addEvent(id, name)">
-        <p> id </p>
-        <input name="id" [(ngModel)]=id>
-        <p> name</p>
-        <input name="name" [(ngModel)]="name">
-        <button type="submit"> submit </button>
+    <form (ngSubmit)="addEvent(description, name)">
+        <p class="text" > description </p>
+        <input class=input name="description" [(ngModel)]="description">
+        <p class="text"> name</p>
+        <input class=input name="name" [(ngModel)]="name">&nbsp; 
+        <button class=button type="submit"> submit </button>
     </form>
 </div>

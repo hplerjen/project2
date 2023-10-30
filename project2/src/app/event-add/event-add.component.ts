@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventFireBaseService } from '../event-fire-base.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-event-add',
@@ -7,15 +8,17 @@ import { EventFireBaseService } from '../event-fire-base.service';
   styleUrls: ['./event-add.component.css']
 })
 export class EventAddComponent {
-  id : number = 0;
-  name: string = "INITIAL_VALUE";
+  public description! : string;
+  public name! : string;
 
-  constructor(public eventFireBaseService: EventFireBaseService){
+  constructor(public eventFireBaseService: EventFireBaseService, private router: Router){
   }
 
-  addEvent(id: number, name: string){
-    console.log("start firebase addEvent() - number : " + id + " name: " + name);
-    this.eventFireBaseService.createEvent(this.id, this.name);
+  addEvent(description: string, name: string){
+    console.log("start firebase addEvent() - description : " + description + " name: " + name);
+    const docRef = this.eventFireBaseService.createEvent(this.description, this.name);
+    console.log("creation successful with docRef :" + docRef);
+    this.router.navigate(['events']); 
   }
-  
+
 }

@@ -21,6 +21,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { EventAddComponent } from './event-add/event-add.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { EventAddComponent } from './event-add/event-add.component';
     MatToolbarModule,
     MatIconModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

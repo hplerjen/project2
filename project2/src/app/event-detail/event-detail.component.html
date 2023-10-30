@@ -1,6 +1,14 @@
 <p>event-detail works!</p>
-
-<div *ngIf="event">
-      {{ event.id }} {{ event.name }} 
+<div class="container">
+    <h1> add Event</h1>
+    <form (ngSubmit)="updateEvent(id, description, name)">
+      <input hidden class=input name="id" [(ngModel)]="id">
+      <p class="text" > description </p>
+        <input class=input name="description" [(ngModel)]="description">
+        <p class="text"> name</p>
+        <input class=input name="name" [(ngModel)]="name">&nbsp; 
+        <button class=button type="submit"> submit </button>
+    </form>
+    <button class="button" onclick="deleteEvent(id)">delete</button>
 </div>
 

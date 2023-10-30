@@ -1,12 +1,12 @@
 export interface EventM {
     //artists : string[];
-    id: number;
+    id: string;
     name: string;
+    description: string;
     /*dateCreated: Date;
     dateDeleted: Date;
     dateFrom: Date;
     dateTo: Date;
-    description: string;
     eventType: string;
     eventPassed: boolean;
     place: string;
@@ -15,11 +15,11 @@ export interface EventM {
 
   export const events = [
     {
-        id: 1,
+        description: "Raven-Spirit",
         name: "workshop1"
     },
     {
-        id: 2,
+        description: "Farner",
         name: "workshop2"
       },
   ];

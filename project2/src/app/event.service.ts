@@ -6,7 +6,7 @@ import { EventM } from './events';
   providedIn: 'root'
 })
 
-export class EventFireBaseService {
+export class EventService {
 
   private collectionRef: any ;
 
@@ -24,21 +24,19 @@ export class EventFireBaseService {
     return docRef.id;
   }
 
-  async getEvents()  {
+   //REM support by Michael
+   async getEvents()  {
     const q = query(this.collectionRef);
     const querySnapshot = await getDocs(q);
-    querySnapshot.docs.forEach((doc) => {console.log(doc.id, " => ", doc.data());
-    });
-    return querySnapshot.docs;
-    //querySnapshot.docs.map(doc => doc.data());
+    return querySnapshot.docs.map((doc) => ({id: doc.id, ...(doc.data() as {})}));
    }
 
   async getEvent(id: string)  {
     const docRef = doc(this.db, "events", id);
-    console.log("create docRef:" + docRef);
+    console.log("getDocument for docRef:" + docRef);
     const docSnap = await getDoc(docRef);
-    console.log("document :" + docSnap);
-    return docSnap.data;
+    const eventData = docSnap.data();
+    return eventData;
   } 
 
   async updateEvent(id: string, event: { description: string; name: string; }) {

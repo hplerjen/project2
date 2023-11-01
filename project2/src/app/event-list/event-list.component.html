@@ -3,9 +3,9 @@
     <span><a routerLink="/event-add">Add Event</a></span>
 </nav>
 <div *ngFor="let event of events">
-    
-    <li><a [title]="event.name + ' details' + event.id"
+
+    <li><a [title]="event.name + ' details'"
         [routerLink]="['/event', event.id]"> 
-      {{ event.id }} &nbsp;  {{ event.name }} </a></li>
+      {{ event.name }} &nbsp;  {{ event.description }} </a></li>
 </div>
 

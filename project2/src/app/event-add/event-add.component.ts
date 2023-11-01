@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventFireBaseService } from '../event-fire-base.service';
+import { EventService } from '../event.service';
 import { Router } from "@angular/router";
 
 @Component({
@@ -11,12 +11,12 @@ export class EventAddComponent {
   public description! : string;
   public name! : string;
 
-  constructor(public eventFireBaseService: EventFireBaseService, private router: Router){
+  constructor(public eventFireBaseService: EventService, private router: Router){
   }
 
-  addEvent(description: string, name: string){
+  async addEvent(description: string, name: string){
     console.log("start firebase addEvent() - description : " + description + " name: " + name);
-    const docRef = this.eventFireBaseService.createEvent(this.description, this.name);
+    const docRef = await this.eventFireBaseService.createEvent(this.description, this.name);
     console.log("creation successful with docRef :" + docRef);
     this.router.navigate(['events']); 
   }

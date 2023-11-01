@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { EventM, events } from '../events';
-import { EventFireBaseService } from '../event-fire-base.service';
+import { EventM } from '../events';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -10,33 +10,41 @@ import { EventFireBaseService } from '../event-fire-base.service';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-  event: any;
+  public eventM! : EventM | any | undefined;
   public description! : string;
   public name! : string;
   public id! : string;
 
   constructor(
     private route: ActivatedRoute,
-    private eventFireBaseService: EventFireBaseService,
+    private eventService: EventService,
     private location: Location,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
       const routeParams = this.route.snapshot.paramMap;
       let eventIdFromRoute = routeParams.get('id') ;
-      if (eventIdFromRoute != null){
-      console.log("eventId from route:" + eventIdFromRoute);
-      this.event = this.eventFireBaseService.getEvent(eventIdFromRoute)};
+      if (eventIdFromRoute!){
+        console.log("eventId from route:" + eventIdFromRoute);
+        const snap1 = await this.eventService.getEvent(eventIdFromRoute);
+        this.eventM = snap1;
+        if (this.eventM!){
+          this.name = this.eventM.name;
+          this.description = this.eventM.description;
+          this.id = eventIdFromRoute;
+        }
+
+      }
   }
 
   updateEvent(id: string, description: string , name: string){
     console.log("start firebase updateEvent() - description : " + description + " name: " + name);
-    this.eventFireBaseService.updateEvent(id, {description, name});
+    this.eventService.updateEvent(id, {description, name});
   }
 
   deleteEvent(id: string){
     console.log("start firebase deleteEvent() - id: " + id);
-    this.eventFireBaseService.deleteEvent(id);
+    this.eventService.deleteEvent(id);
   }
 
 }

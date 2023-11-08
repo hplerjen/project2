@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventM, events } from '../events';
-import { EventService } from '../event.service';
+import { EventM, events } from '../service/events';
+import { EventService } from '../service/event.service';
 import { DocumentData, QuerySnapshot } from '@angular/fire/firestore';
 @Component({
   selector: 'app-event-list',
@@ -19,12 +19,11 @@ export class EventListComponent implements OnInit {
   }
 
   async getEvents() {
-    //QuerySnapshot<DocumentData>;
+    //FIXME error handling
     this.events = await this.eventService.getEvents();
-    //this.events = querySnapshotDocs.map((doc:any) => doc.data());
-    console.log("getEvents from firebase:" + this.events);
   }
 
+  //REM helper method for testing purposes
   /* updateEventCollection(snapshot: any) {
     this.events = [];
     snapshot.forEach((event : any) => {

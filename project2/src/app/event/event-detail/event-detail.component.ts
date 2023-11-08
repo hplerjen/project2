@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { EventM } from '../events';
-import { EventService } from '../event.service';
+import { EventM } from '../service/events';
+import { EventService } from '../service/event.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-event-detail',
@@ -19,6 +20,7 @@ export class EventDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private eventService: EventService,
     private location: Location,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -45,6 +47,7 @@ export class EventDetailComponent implements OnInit {
   deleteEvent(id: string){
     console.log("start firebase deleteEvent() - id: " + id);
     this.eventService.deleteEvent(id);
+    this.router.navigate(['events']); 
   }
 
 }

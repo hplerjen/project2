@@ -10,6 +10,7 @@ export interface EventM {
     eventType: string;
     eventPassed: boolean;
     place: string;
+    location: string
     url: string;*/
   }
 
